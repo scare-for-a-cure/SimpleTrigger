@@ -2,6 +2,9 @@
 #include <RBD_Timer.h>  // https://github.com/alextaujenis/RBD_Timer
 
 #define ttl HIGH // define wether the signal to the relay board is high or low
+#define sig LOW // define whether the trigger pin is looking for a high or low signal to signify as on.
+
+
 
 //outputs
 int ch_1 = 2; // define channel 1 pin
@@ -10,11 +13,14 @@ int ch_1 = 2; // define channel 1 pin
 //int trigger = 11 ; 
 
 //button
-EBD::Button trig = 11;
+RBD::Button trig = 11;
 
 //timers
 RBD::Timer standby(30000);
 RBD::Timer ch1_Time(5000);
+
+
+
 
 void setup(){
   Serial.begin(9600);
@@ -23,6 +29,12 @@ void setup(){
   pinMode(ch_1, OUTPUT);
   digitalWrite(ch_1, !ttl);
   ch1_Time.onExpired();
+  
+  pinMode(trigger, INPUT);
+  if(sig == HIGH){   /// the button event by default is looking for a pull to ground signal, this will changer it to a pull to high.
+    trig.invertReading();
+  }
+  
   standby.restart();
   
 }
