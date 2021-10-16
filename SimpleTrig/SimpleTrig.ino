@@ -13,6 +13,7 @@ Developed by: James Manley
 
 //LIBRARIES
 #include <RBD_Timer.h>  // https://github.com/alextaujenis/RBD_Timer
+#include <RBD_button.h> // https://github.com/alextaujenis/RBD_Button
 
 #define ttl HIGH // define wether the signal to the relay board is high or low
 #define sig LOW // define whether the trigger pin is looking for a high or low signal to signify as on.
