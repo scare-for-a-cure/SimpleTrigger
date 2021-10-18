@@ -1,10 +1,10 @@
 /*
-This is a simpe trigger program, meant to read a sensor and start a signal for a given amount of time.
+This is a simpe trigger program, meant to read a sensor and start a signal for a given amount of time. Meant to replace using a pico-boo just to trigger a timed event
 
-this is to replace using a pico-boo just to trigger a timed event
-
+This sketch can also be used as a template for making other programs following the same pin out and libraries.
 
 Developed by: James Manley
+contact: jamesmanley1992@gmail.com
 
 */
 
@@ -19,8 +19,8 @@ Developed by: James Manley
 #define ttl HIGH // define wether the signal to the relay board is high or low
 
 //timers
-RBD::Timer standby(30000);
-RBD::Timer ch1_Time(5000);
+RBD::Timer standby(30000); // standby time is the amount of time after the affect stops before it can be run again.
+RBD::Timer ch1_Time(5000); // the amount of time you want Ch_1 to be high before being set Low.
 
 
 ///^ Define system above ^///
@@ -33,7 +33,7 @@ RBD::Button Trig(11);  // the trigger should be a pull to ground signal
 //outputs
 int LED_Armed = 13 ; // define the built in LED as the arming led for ststua updates
 int ch_1 = 2; // define channel 1 pin
- // these channels arent used in this simple program but they are lsited for reference if using this to make a new program.
+ // these channels arent used in this simple program but they are lsited for reference if using this as a template
 //int ch_2 = 3;
 //int ch_3 = 4;
 //int ch_4 = 5;
@@ -71,9 +71,7 @@ void ArmBlink(){ // this script handles the flashing of the Built-In led to go p
   if(standby.isStopped()){ // while the program is executing turn the LED off.
     ledState = LOW;
     digitalWrite(LED_Armed, HIGH);
-  }
-
-  
+  } 
 }
 
 
@@ -89,7 +87,7 @@ void setup(){
 
   pinMode(ch_1, OUTPUT);
   digitalWrite(ch_1, !ttl);
-  ch1_Time.onExpired();
+  ch1_Time.onExpired(); // declare the timer here to clear the .onExpired value before starting the main loop
   
   pinMode(Led_Armed, OUTPUT); // declaring the pin as an output helps make the built in led shine brighter
   
@@ -97,17 +95,14 @@ void setup(){
   
 }
 
-
-
 void loop(){
   
-  if(standby.isExpired() && trig.onPressed()){
+  if(standby.isExpired() && trig.onPressed()){ //what actions should be taken once the button is pressed, and the standby period has elapsed
     Serial.println("Button pressed, sequence started");
     digitalWrite(ch_1, ttl);
     ch1_Time.restart();
     standby.stop(); // while the event is happening, the standby timer is turned off to keep the arming LED off.
   }
-  
   
 ///^ INPUT BASED EVENTS GO ABOVE ^///
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -119,7 +114,6 @@ void loop(){
     Serial.println("Ch_1 turned off");
     digitalWrite(ch_1, !ttl);
     standby.restart(); // once the last step of the event has completed, start the standby timer, with blinking led
+    Serial.println("Affect is finished, entering standby mode");
   }
-
-  
 }
