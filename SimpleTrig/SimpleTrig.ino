@@ -6,6 +6,12 @@ This sketch can also be used as a template for making other programs following t
 Developed by: James Manley
 contact: jamesmanley1992@gmail.com
 
+Pinout Plan:
+[0/1] TX/RX
+[2-9] Relay 1-8
+[11] Input Trigger
+[13] Arming Status LED
+
 */
 
 
