@@ -11,7 +11,7 @@ Relay 1-8 : pins 2-9
 Examples:
 
 
-ch_1 time(1000) / standby time (1000) / motion detector. 
+**ch_1 time(1000) / standby time (1000) / motion detector. 
 
 In this scenario, the affect is on for one second after the motion sensor is triggered, then off for one second, then if it is still seeing motion it will trigger on for 1 second again, and repeating until motion stops.
 
@@ -19,7 +19,7 @@ This affect is good, for things like misters, that you want to pulse while a gro
 
 
 
-ch_1 time (1000) / standby time (60000) / motion sensor
+**ch_1 time (1000) / standby time (60000) / motion sensor
 
 In this scenario the affect is triggered for one second, but then wont be triggered again for 60 seconds.
 
