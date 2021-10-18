@@ -4,7 +4,7 @@ This is a simpe trigger program, meant to read a sensor and start a signal for a
 This sketch can also be used as a template for making other programs following the same pin out and libraries.
 
 Developed by: James Manley
-contact: jamesmanley1992@gmail.com
+contact: james.manley@scareforacure.org
 
 Pinout Plan:
 [0/1] TX/RX
